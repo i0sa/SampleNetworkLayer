@@ -7,14 +7,85 @@
 //
 
 import UIKit
+import Alamofire
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var myAlertView: UIView!
+    @IBOutlet weak var dataTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    
+    
+    var data: [ToDoModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
+        loadData()
+    }
+    
+    func loadData(){
+        NetworkClient.getToDoLists(success: { (models) in
+            self.data = models
+            self.myTableView.reloadData()
+        }) { [unowned self]  error in
+            self.displayError(error.localizedDescription)
+        }
+    }
+    
+    func displayError(_ text: String){
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "toDoCell") as! ToDoListCell
+        cell.configure(data: self.data[indexPath.row])
+        
+        return cell
+        
+    }
+    
+    @IBAction func pressedOnAdd(_ sender: UIBarButtonItem) {
+       
+        UIView.animate(withDuration: 0.3) {
+            self.myAlertView.alpha = 1
+        }
+        
+    }
+    
+    
+    @IBAction func didPressAddNote(_ sender: UIButton) {
+        guard let titleText = dataTextField.text, let descText = descriptionTextField.text, titleText.isEmpty == false, descText.isEmpty == false else {
+            return
+        }
+        
+        NetworkClient.addToDoList(title: titleText, desc: descText, onSuccess: { [unowned self] (models)  in
+            self.data = models
+            self.myTableView.reloadData()
+            
+        }) { (error) in
+            self.displayError(error.localizedDescription)
+        }
+        
+        
+        UIView.animate(withDuration: 0.2) {
+            self.myAlertView.alpha = 0
+        }
+        
+        dataTextField.text = ""
+        descriptionTextField.text = ""
+    }
+    
+    @IBAction func didPressCancel(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5) {
+            self.myAlertView.alpha = 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
 
 }
 

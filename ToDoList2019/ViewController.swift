@@ -26,11 +26,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadData(){
-        NetworkClient.getToDoLists(success: { (models) in
+        NetworkClient.performRequest([ToDoModel].self, router: APIRouter.getTodoLists, success: { (models) in
             self.data = models
             self.myTableView.reloadData()
-        }) { [unowned self]  error in
+        }) { (error) in
             self.displayError(error.localizedDescription)
+            
         }
     }
     
@@ -60,14 +61,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        NetworkClient.addToDoList(title: titleText, desc: descText, onSuccess: { [unowned self] (models)  in
+        
+        NetworkClient.performRequest([ToDoModel].self, router: APIRouter.addToDo(title: titleText, description: descText), success: { (models) in
             self.data = models
             self.myTableView.reloadData()
-            
         }) { (error) in
             self.displayError(error.localizedDescription)
+            
         }
-        
         
         UIView.animate(withDuration: 0.2) {
             self.myAlertView.alpha = 0

@@ -26,13 +26,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadData(){
-        NetworkClient.performRequest([ToDoModel].self, router: APIRouter.getTodoLists, success: { (models) in
-            self.data = models
-            self.myTableView.reloadData()
-        }) { (error) in
-            self.displayError(error.localizedDescription)
+        
+        
+        NetworkClient.performRequest([ToDoModel].self, router: APIRouter.getTodoLists, success: { [weak self] (models) in
+            self?.data = models
+            self?.myTableView.reloadData()
+        }) { [weak self] (error) in
+            self?.displayError(error.localizedDescription)
             
         }
+        
+        
     }
     
     func displayError(_ text: String){
@@ -62,11 +66,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         
-        NetworkClient.performRequest([ToDoModel].self, router: APIRouter.addToDo(title: titleText, description: descText), success: { (models) in
-            self.data = models
-            self.myTableView.reloadData()
-        }) { (error) in
-            self.displayError(error.localizedDescription)
+        NetworkClient.performRequest([ToDoModel].self, router: APIRouter.addToDo(title: titleText, description: descText), success: { [weak self] (models) in
+            self?.data = models
+            self?.myTableView.reloadData()
+        }) { [weak self] (error) in
+            self?.displayError(error.localizedDescription)
             
         }
         

@@ -18,6 +18,7 @@
 		039FD9052295E66300B79BE9 /* ToDoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FD9042295E66300B79BE9 /* ToDoListCell.swift */; };
 		039FD9092295F13E00B79BE9 /* ToDoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FD9082295F13E00B79BE9 /* ToDoModel.swift */; };
 		6F62FADCB403702792D1FA01 /* Pods_ToDoList2019.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE32BE051FA155C75ACFAF7 /* Pods_ToDoList2019.framework */; };
+		D7AE86AD23392005000231A6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE86AC23392005000231A6 /* AuthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		039FD9042295E66300B79BE9 /* ToDoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListCell.swift; sourceTree = "<group>"; };
 		039FD9082295F13E00B79BE9 /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
 		0EE32BE051FA155C75ACFAF7 /* Pods_ToDoList2019.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoList2019.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7AE86AC23392005000231A6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		E80F31CA16DD5A6652ED0BB3 /* Pods-ToDoList2019.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList2019.release.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList2019/Pods-ToDoList2019.release.xcconfig"; sourceTree = "<group>"; };
 		F03DAB3F34F4897ED8D0BE38 /* Pods-ToDoList2019.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList2019.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ToDoList2019/Pods-ToDoList2019.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 				039FD8F22295DB0500B79BE9 /* ViewController.swift */,
 				039FD9082295F13E00B79BE9 /* ToDoModel.swift */,
 				039FD9042295E66300B79BE9 /* ToDoListCell.swift */,
+				D7AE86AC23392005000231A6 /* AuthManager.swift */,
 				036018CD22BEA68F00554672 /* Network */,
 				039FD8F42295DB0500B79BE9 /* Main.storyboard */,
 				039FD8F72295DB0700B79BE9 /* Assets.xcassets */,
@@ -186,7 +189,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToDoList2019/Pods-ToDoList2019-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-ToDoList2019/Pods-ToDoList2019-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -195,7 +198,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToDoList2019/Pods-ToDoList2019-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ToDoList2019/Pods-ToDoList2019-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AB9AFC8B9D8973F89756DE12 /* [CP] Check Pods Manifest.lock */ = {
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				036018CF22BEA6B500554672 /* Constants.swift in Sources */,
+				D7AE86AD23392005000231A6 /* AuthManager.swift in Sources */,
 				036018D122BEA70A00554672 /* APIRouter.swift in Sources */,
 				039FD8F32295DB0500B79BE9 /* ViewController.swift in Sources */,
 				039FD9092295F13E00B79BE9 /* ToDoModel.swift in Sources */,

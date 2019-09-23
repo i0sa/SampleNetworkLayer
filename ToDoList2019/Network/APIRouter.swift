@@ -41,6 +41,16 @@ enum APIRouter: URLRequestConvertible {
         }
     }
     
+    // this is for authentication, allow all, and maybe disable for some
+    var AuthRequired: Bool {
+        switch self {
+        case .getTodoLists:
+            return false
+        default:
+            return true
+        }
+    }
+    
     func asURLRequest() throws -> URLRequest {
         let url = try Constants.baseURL.asURL().appendingPathComponent(path)
         
@@ -51,6 +61,12 @@ enum APIRouter: URLRequestConvertible {
         request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
         
         request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+        
+        if(AuthRequired){
+            if(AuthManager.loggedIn) {
+                request.setValue(AuthManager.authKey(), forHTTPHeaderField: HTTPHeaderField.authentication.rawValue)
+            }
+        }
         
         if let parameters = parameters {
             return try URLEncoding.default.encode(request, with: parameters)

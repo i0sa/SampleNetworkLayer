@@ -50,6 +50,17 @@ enum APIRouter: URLRequestConvertible {
             return true
         }
     }
+    // encoding, either URL (normal url query) or a JSON body..
+    var encoding: ParameterEncoding {
+        switch self {
+        case .getTodoLists:
+            return JSONEncoding.default
+        default:
+            return URLEncoding.default
+
+        }
+    }
+
     
     func asURLRequest() throws -> URLRequest {
         let url = try Constants.baseURL.asURL().appendingPathComponent(path)
@@ -69,7 +80,7 @@ enum APIRouter: URLRequestConvertible {
         }
         
         if let parameters = parameters {
-            return try URLEncoding.default.encode(request, with: parameters)
+            return try encoding.encode(request, with: parameters)
             
         }
         
